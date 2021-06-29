@@ -11,7 +11,19 @@ SELECT * FROM country WHERE lifeexpectancy IS NOT NULL ORDER BY lifeexpectancy D
 SELECT city.name FROM country LEFT JOIN city ON country.capital = city.id WHERE country.code = 'ESP';
 
 5Using JOIN ... ON, list all the languages spoken in the Southeast Asia region.
-SELECT cl.language FROM country c LEFT JOIN countrylanguage cl ON c.code = cl.countrycode WHERE c.region = 'Southeast Asia';
+SELECT language FROM country c LEFT JOIN countrylanguage cl ON c.code = cl.countrycode WHERE c.region = 'Southeast Asia';
 
-Using a single query, list 25 cities around the world that start with the letter F.
+6.Using a single query, list 25 cities around the world that start with the letter F.
 SELECT NAME FROM city WHERE NAME LIKE 'f%' ORDER BY NAME ASC LIMIT 25;
+
+7.
+
+Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? Discard non-zero populations.
+
+SELECT population
+FROM country
+WHERE population = (
+        select min(population)
+        from country
+        where population <> 0
+        )
