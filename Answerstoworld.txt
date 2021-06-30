@@ -16,10 +16,10 @@ SELECT language FROM country c LEFT JOIN countrylanguage cl ON c.code = cl.count
 6.Using a single query, list 25 cities around the world that start with the letter F.
 SELECT NAME FROM city WHERE NAME LIKE 'f%' ORDER BY NAME ASC LIMIT 25;
 
-7.
+7.Using COUNT and JOIN ... ON, get the number of cities in China.
+I wasn't sure what I'm meant to join!
 
 8.Using IS NOT NULL, ORDER BY, and LIMIT, which country has the lowest population? Discard non-zero populations.
-
 SELECT population
 FROM country
 WHERE population = (
@@ -28,6 +28,27 @@ WHERE population = (
         where population <> 0
         )
 
+9.Using aggregate functions, return the number of countries the database contains.
+SELECT COUNT(*) FROM country;
 
 10.What are the top ten largest countries by area?
-SELECT surfacearea, name FROM country ORDER BY surfacearea DESC LIMIT 10
+SELECT surfacearea, name FROM country ORDER BY surfacearea DESC LIMIT 10;
+
+11.List the five largest cities by population in Japan.
+SELECT population, name FROM city WHERE CountryCode = "JPN" ORDER BY population DESC LIMIT 5;
+
+12.UPDATE country
+UPDATE country
+SET HeadOfState = "Elizabeth II"
+WHERE HeadOfState = "Elisabeth II";
+
+SELECT name, code FROM country WHERE headofstate = "Elisabeth II";
+
+13.List the top ten countries with the smallest population-to-area ratio. Discard any countries with a ratio of 0.
+?
+
+14.List every unique world language.
+SELECT DISTINCT language FROM countrylanguage ORDER BY language ASC;
+
+15.List the names and GNP of the world's top 10 richest countries.
+SELECT name, gnp FROM country ORDER BY gnp DESC LIMIT 10;
