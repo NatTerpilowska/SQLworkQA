@@ -45,10 +45,18 @@ WHERE HeadOfState = "Elisabeth II";
 SELECT name, code FROM country WHERE headofstate = "Elisabeth II";
 
 13.List the top ten countries with the smallest population-to-area ratio. Discard any countries with a ratio of 0.
-?
+USE world;
+SELECT name, population FROM country
+WHERE population > 0
+AND population IS NOT NULL 
+ORDER BY population ASC
+LIMIT 1;
 
 14.List every unique world language.
 SELECT DISTINCT language FROM countrylanguage ORDER BY language ASC;
 
 15.List the names and GNP of the world's top 10 richest countries.
 SELECT name, gnp FROM country ORDER BY gnp DESC LIMIT 10;
+
+17.Which country has the worst life expectancy? Discard zero or null values.
+SELECT name, lifeexpectancy FROM country WHERE lifeexpectancy IS NOT NULL ORDER BY lifeexpectancy ASC LIMIT 10;
